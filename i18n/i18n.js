@@ -28,7 +28,22 @@ class I18n {
   // Load translation file
   async load(lang) {
     try {
-      const response = await fetch(`/i18n/${lang}.json`);
+      // Auto-detect base path based on current location
+      let basePath = window.I18N_BASE_PATH;
+      if (!basePath) {
+        // If we're in a subdirectory (e.g., frontend/), use ../i18n
+        // Otherwise use ./i18n or /pygmalion-field/i18n for GitHub Pages
+        const path = window.location.pathname;
+        if (path.includes('/frontend/')) {
+          basePath = '../i18n';
+        } else if (path.includes('/pygmalion-field/')) {
+          basePath = '/pygmalion-field/i18n';
+        } else {
+          basePath = './i18n';
+        }
+      }
+
+      const response = await fetch(`${basePath}/${lang}.json`);
       if (!response.ok) throw new Error(`Failed to load ${lang}.json`);
       this.translations[lang] = await response.json();
       return true;
