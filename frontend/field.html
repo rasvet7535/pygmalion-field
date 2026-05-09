@@ -129,17 +129,20 @@ function calculateSilenceFade() {
 // Загрузка данных из /api/field
 // ============================================================
 
+// API endpoint — can be configured via window.PYGMALION_API_BASE
+const API_BASE = window.PYGMALION_API_BASE || 'http://localhost:3000';
+
 async function loadField() {
   const ok_id = document.getElementById('ok_input').value.trim();
   if (!ok_id) return;
 
   try {
     // Загрузить данные поля
-    const fieldRes = await fetch(`http://localhost:3000/api/field/${ok_id}`);
+    const fieldRes = await fetch(`${API_BASE}/api/field/${ok_id}`);
     const fieldData = await fieldRes.json();
 
     // Загрузить данные зеркала (для cycle)
-    const mirrorRes = await fetch(`http://localhost:3000/api/mirror/${ok_id}`);
+    const mirrorRes = await fetch(`${API_BASE}/api/mirror/${ok_id}`);
     const mirrorData = await mirrorRes.json();
 
     // Проверка на Абсолютный ноль

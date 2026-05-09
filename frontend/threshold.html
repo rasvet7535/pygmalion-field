@@ -294,7 +294,8 @@
 
       try {
         // Отправить акт THRESHOLD_CROSSED
-        const response = await fetch('http://localhost:3000/api/threshold', {
+        const API_BASE = window.PYGMALION_API_BASE || 'http://localhost:3000';
+        const response = await fetch(`${API_BASE}/api/threshold`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ ok_key: okKey })
