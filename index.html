@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pygmalion — Пространство присутствия</title>
+  <script src="i18n/i18n.js"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: linear-gradient(180deg, #15151c 0%, #0d0d12 100%);
+      color: #e8e8f0;
+      font-family: 'Georgia', serif;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 80px 40px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 300;
+      color: #e8e8f0;
+      margin-bottom: 60px;
+      letter-spacing: 0.5px;
+    }
+
+    .section {
+      margin-bottom: 80px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #a8a8b8;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 20px;
+      color: #a8a8b8;
+    }
+
+    .entry-point {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 12px 32px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid #25252f;
+      color: #e8e8f0;
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+    }
+
+    .entry-point:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: #35353f;
+    }
+
+    .lang-switch {
+      position: fixed;
+      top: 30px;
+      right: 40px;
+      font-size: 12px;
+      color: #68687a;
+    }
+
+    .lang-switch a {
+      color: #68687a;
+      text-decoration: none;
+      margin-left: 12px;
+      transition: color 0.3s ease;
+    }
+
+    .lang-switch a:hover,
+    .lang-switch a.active {
+      color: #e8e8f0;
+    }
+
+    .footnote {
+      margin-top: 120px;
+      padding-top: 40px;
+      border-top: 1px solid #25252f;
+      font-size: 12px;
+      color: #68687a;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 60px 24px;
+      }
+      h1 {
+        font-size: 24px;
+      }
+      .lang-switch {
+        top: 20px;
+        right: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="lang-switch">
+  <a href="#" class="active" data-lang="ru">RU</a>
+  <a href="#" data-lang="en">EN</a>
+</div>
+
+<div class="container">
+  <h1 data-i18n="landing.title">Pygmalion</h1>
+
+  <div class="section">
+    <div class="section-title" data-i18n="landing.what_is">Что это</div>
+    <p data-i18n="landing.what_is_text_1">
+      Пространство, где присутствие фиксируется через импульсы, а не через накопление.
+    </p>
+    <p data-i18n="landing.what_is_text_2">
+      Здесь нет рейтингов, метрик производительности или социальной конкуренции.
+    </p>
+    <p data-i18n="landing.what_is_text_3">
+      Есть только форма участия — видимая геометрия доверия.
+    </p>
+  </div>
+
+  <div class="section">
+    <div class="section-title" data-i18n="landing.how_to_read">Как читать это пространство</div>
+    <p data-i18n="landing.how_to_read_text_1">
+      Каждый день система эмитирует 6 импульсов (У.Е.). Вы выбираете, куда направить своё внимание.
+    </p>
+    <p data-i18n="landing.how_to_read_text_2">
+      В полночь UTC все импульсы сгорают. Это не потеря — это выдох системы.
+    </p>
+    <p data-i18n="landing.how_to_read_text_3">
+      Остаётся только след — геометрия связей, которую вы создали.
+    </p>
+  </div>
+
+  <div class="section">
+    <div class="section-title" data-i18n="landing.entry">Вход</div>
+    <p data-i18n="landing.entry_text">
+      Вход — это выбор. Система не требует регистрации, но требует присутствия.
+    </p>
+    <a href="frontend/threshold.html" class="entry-point" data-i18n="landing.enter_field">Войти в поле</a>
+  </div>
+
+  <div class="footnote">
+    <p data-i18n="landing.footer" data-i18n-html="true">
+      Pygmalion / C.R.I.S.T.A.L.L. — числовая НОД-платформа<br>
+      Технология ТУТумУЕ / ТИУП(ч)<br>
+      © 2017–2026
+    </p>
+  </div>
+</div>
+
+<script>
+// Инициализация i18n при загрузке страницы
+window.addEventListener('DOMContentLoaded', () => {
+  window.i18n.init();
+});
+</script>
+
+</body>
+</html>
