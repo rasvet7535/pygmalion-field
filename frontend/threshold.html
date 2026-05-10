@@ -893,7 +893,7 @@
 
       try {
         // Отправить акт THRESHOLD_CROSSED
-        const API_BASE = window.PYGMALION_API_BASE || 'http://localhost:3000';
+        const API_BASE = window.PYGMALION_API_BASE || 'http://localhost:3001';
         const response = await fetch(`${API_BASE}/api/threshold`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
