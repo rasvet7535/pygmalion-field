@@ -535,7 +535,7 @@
 
         <div class="modal-actions">
           <button class="modal-btn" id="modal_cancel">Отмена</button>
-          <button class="modal-btn modal-btn-primary" id="modal_confirm" disabled>Подтвердить</button>
+          <button class="modal-btn modal-btn-primary" id="modal_confirm" disabled>ОЖИДАНИЕ ВВОДА</button>
         </div>
       </div>
     </div>
@@ -650,6 +650,9 @@
       modalOkDisplay.className = isValid ? 'modal-ok-display valid' : 'modal-ok-display invalid';
       modalOkLength.textContent = `${modalOkContent.length} / 50`;
       modalConfirm.disabled = !isValid;
+
+      // Обновить текст кнопки
+      modalConfirm.textContent = modalOkContent.length > 0 ? 'ПРИНЯТЬ О.КЛЮЧИК' : 'ОЖИДАНИЕ ВВОДА';
     }
 
     // Создать клавиатуру
