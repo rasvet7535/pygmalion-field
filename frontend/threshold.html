@@ -627,18 +627,24 @@
 
     // Обновить отображение О.К. в модальном окне
     function updateModalDisplay() {
+      // Каноническая цветовая схема ЧисСлоБукВ
       const colorMap = {
-        'А': 'red', 'Б': 'red', 'В': 'red', 'Г': 'red', 'Д': 'red', 'Е': 'red',
-        'Ж': 'red', 'З': 'red', 'И': 'red', 'Й': 'red', 'К': 'red', 'Л': 'red',
-        'М': 'red', 'Н': 'red', 'О': 'red', 'П': 'red', 'Р': 'red', 'С': 'red',
-        'Т': 'red', 'У': 'red', 'Ф': 'red', 'Х': 'red', 'Ц': 'red', 'Ч': 'red',
-        'Ш': 'red', 'Щ': 'red', 'Ъ': 'red', 'Ы': 'red', 'Ь': 'red', 'Э': 'red',
-        'Ю': 'red', 'Я': 'red',
-        'A': 'blue', 'B': 'blue', 'C': 'blue', 'D': 'blue', 'E': 'blue', 'F': 'blue',
-        'G': 'blue', 'H': 'blue', 'I': 'blue', 'J': 'blue', 'K': 'blue', 'L': 'blue',
-        'M': 'blue', 'N': 'blue', 'O': 'blue', 'P': 'blue', 'Q': 'blue', 'R': 'blue',
-        'S': 'blue', 'T': 'blue', 'U': 'blue', 'V': 'blue', 'W': 'blue', 'X': 'blue',
-        'Y': 'blue', 'Z': 'blue',
+        // Русские уникальные (КРАСНЫЕ)
+        'Ё': 'red', 'Й': 'red', 'Ц': 'red', 'У': 'red', 'К': 'red', 'Е': 'red',
+        'Н': 'red', 'Г': 'red', 'Ш': 'red', 'Щ': 'red', 'З': 'red', 'Х': 'red',
+        'Ъ': 'red', 'Ф': 'red', 'Ы': 'red', 'В': 'red', 'А': 'red', 'П': 'red',
+        'Р': 'red', 'О': 'red', 'Л': 'red', 'Д': 'red', 'Ж': 'red', 'Э': 'red',
+        'Я': 'red', 'Ч': 'red', 'С': 'red', 'М': 'red', 'И': 'red', 'Т': 'red',
+        'Ь': 'red', 'Б': 'red', 'Ю': 'red',
+        // Латинские уникальные (СИНИЕ) — 14 букв
+        'Q': 'blue', 'Z': 'blue', 'Y': 'blue', 'S': 'blue', 'U': 'blue',
+        'F': 'blue', 'G': 'blue', 'J': 'blue', 'I': 'blue', 'W': 'blue',
+        'V': 'blue', 'L': 'blue', 'N': 'blue', 'R': 'blue',
+        // Общие буквы (ЗЕЛЁНЫЕ) — есть в русском и латинском
+        'X': 'green', 'C': 'green', 'T': 'green', 'M': 'green', 'O': 'green',
+        'A': 'green', 'K': 'green', 'E': 'green', 'B': 'green', 'H': 'green',
+        'P': 'green',
+        // Специальный символ (ЗЕЛЁНЫЙ)
         '𝕯': 'green'
       };
 
@@ -667,41 +673,117 @@
       }
     }
 
-    // Создать клавиатуру
+    // Создать клавиатуру (каноническая раскладка ЧисСлоБукВ)
     function createKeyboard() {
       const rows = [
-        { chars: ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'Й'], color: 'red' },
-        { chars: ['К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У'], color: 'red' },
-        { chars: ['Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э'], color: 'red' },
-        { chars: ['Ю', 'Я', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'], color: 'mixed' },
-        { chars: ['I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R'], color: 'blue' },
-        { chars: ['S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '𝕯'], color: 'blue' },
-        { chars: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], color: 'num' }
+        // Ряд 0: Ё Й цифры Ы Э
+        [
+          { char: 'Ё', color: 'red' },
+          { char: 'Й', color: 'red' },
+          { char: '8', color: 'num' },
+          { char: '6', color: 'num' },
+          { char: '4', color: 'num' },
+          { char: '2', color: 'num' },
+          { char: '0', color: 'num' },
+          { char: '1', color: 'num' },
+          { char: '3', color: 'num' },
+          { char: '5', color: 'num' },
+          { char: '7', color: 'num' },
+          { char: '9', color: 'num' },
+          { char: 'Ы', color: 'red' },
+          { char: 'Э', color: 'red' }
+        ],
+        // Ряд 1: Q X C T 𝕯 M O A K E B H P Ю
+        [
+          { char: 'Q', color: 'blue' },
+          { char: 'X', color: 'green' },
+          { char: 'C', color: 'green' },
+          { char: 'T', color: 'green' },
+          { char: '𝕯', color: 'green' },
+          { char: 'M', color: 'green' },
+          { char: 'O', color: 'green' },
+          { char: 'A', color: 'green' },
+          { char: 'K', color: 'green' },
+          { char: 'E', color: 'green' },
+          { char: 'B', color: 'green' },
+          { char: 'H', color: 'green' },
+          { char: 'P', color: 'green' },
+          { char: 'Ю', color: 'red' }
+        ],
+        // Ряд 2: Z Y S U F G J I W V L N R Я
+        [
+          { char: 'Z', color: 'blue' },
+          { char: 'Y', color: 'blue' },
+          { char: 'S', color: 'blue' },
+          { char: 'U', color: 'blue' },
+          { char: 'F', color: 'blue' },
+          { char: 'G', color: 'blue' },
+          { char: 'J', color: 'blue' },
+          { char: 'I', color: 'blue' },
+          { char: 'W', color: 'blue' },
+          { char: 'V', color: 'blue' },
+          { char: 'L', color: 'blue' },
+          { char: 'N', color: 'blue' },
+          { char: 'R', color: 'blue' },
+          { char: 'Я', color: 'red' }
+        ],
+        // Ряд 3: З Ч Ц У Ф Г Ж И Ш Щ Л Б П Ь/Ъ
+        [
+          { char: 'З', color: 'red' },
+          { char: 'Ч', color: 'red' },
+          { char: 'Ц', color: 'red' },
+          { char: 'У', color: 'red' },
+          { char: 'Ф', color: 'red' },
+          { char: 'Г', color: 'red' },
+          { char: 'Ж', color: 'red' },
+          { char: 'И', color: 'red' },
+          { char: 'Ш', color: 'red' },
+          { char: 'Щ', color: 'red' },
+          { char: 'Л', color: 'red' },
+          { char: 'Б', color: 'red' },
+          { char: 'П', color: 'red' },
+          { char: 'Ь', alt: 'Ъ', color: 'red', split: true }
+        ]
       ];
 
       rows.forEach(row => {
         const rowDiv = document.createElement('div');
         rowDiv.className = 'modal-kb-row';
 
-        row.chars.forEach(char => {
+        row.forEach(key => {
           const btn = document.createElement('button');
           btn.className = 'modal-kb-btn';
 
-          if (row.color === 'red') btn.classList.add('modal-kb-red');
-          else if (row.color === 'blue') btn.classList.add('modal-kb-blue');
-          else if (char === '𝕯') btn.classList.add('modal-kb-green');
-          else if (row.color === 'mixed') {
-            if (['Ю', 'Я'].includes(char)) btn.classList.add('modal-kb-red');
-            else btn.classList.add('modal-kb-blue');
-          }
+          // Цветовая кодировка
+          if (key.color === 'red') btn.classList.add('modal-kb-red');
+          else if (key.color === 'blue') btn.classList.add('modal-kb-blue');
+          else if (key.color === 'green') btn.classList.add('modal-kb-green');
 
-          btn.textContent = char;
-          btn.addEventListener('click', () => {
-            if (modalOkContent.length < 50) {
-              modalOkContent += char;
-              updateModalDisplay();
-            }
-          });
+          // Split-кнопка (Ь/Ъ)
+          if (key.split) {
+            btn.classList.add('modal-kb-split');
+            btn.innerHTML = `
+              <span class="modal-kb-split-tl">${key.char}</span>
+              <span class="modal-kb-split-br">${key.alt}</span>
+            `;
+            btn.addEventListener('click', (e) => {
+              const rect = btn.getBoundingClientRect();
+              const y = e.clientY - rect.top;
+              const char = y > rect.height / 2 ? key.alt : key.char;
+              if (modalOkContent.length < 50) {
+                modalOkContent += char;
+                updateModalDisplay();
+              }
+            });
+          } else {
+            btn.textContent = key.char;
+            btn.addEventListener('click', () => {
+              if (modalOkContent.length < 50) {
+                modalOkContent += key.char;
+                updateModalDisplay();
+              }
+            });
+          }
 
           rowDiv.appendChild(btn);
         });
@@ -709,39 +791,73 @@
         modalKeyboard.appendChild(rowDiv);
       });
 
-      // Управляющие кнопки
+      // Ряд 4: Управление + парные символы
       const controlRow = document.createElement('div');
       controlRow.className = 'modal-kb-row';
 
-      const deleteBtn = document.createElement('button');
-      deleteBtn.className = 'modal-kb-btn modal-kb-control modal-kb-delete';
-      deleteBtn.textContent = 'DEL';
-      deleteBtn.addEventListener('click', () => {
-        modalOkContent = '';
-        updateModalDisplay();
-      });
+      const controls = [
+        { type: 'delete', text: 'DEL', class: 'modal-kb-delete' },
+        { char: '+', alt: '-', split: true },
+        { char: '&', alt: '\\', split: true },
+        { char: '(', alt: '[', split: true },
+        { char: ';', alt: ':', split: true },
+        { char: '?', alt: '!', split: true },
+        { type: 'space', text: 'ПРОБЕЛ', class: 'modal-kb-space' },
+        { char: '@', alt: '#', split: true },
+        { char: '*', alt: '/', split: true },
+        { char: ')', alt: ']', split: true },
+        { char: '_', alt: '=', split: true },
+        { char: ',', alt: '.', split: true },
+        { type: 'backspace', text: '←', class: 'modal-kb-backspace' }
+      ];
 
-      const backspaceBtn = document.createElement('button');
-      backspaceBtn.className = 'modal-kb-btn modal-kb-control modal-kb-backspace';
-      backspaceBtn.textContent = '←';
-      backspaceBtn.addEventListener('click', () => {
-        modalOkContent = modalOkContent.slice(0, -1);
-        updateModalDisplay();
-      });
+      controls.forEach(key => {
+        const btn = document.createElement('button');
+        btn.className = 'modal-kb-btn modal-kb-control';
 
-      const spaceBtn = document.createElement('button');
-      spaceBtn.className = 'modal-kb-btn modal-kb-control modal-kb-space';
-      spaceBtn.textContent = 'SPACE';
-      spaceBtn.addEventListener('click', () => {
-        if (modalOkContent.length < 50) {
-          modalOkContent += ' ';
-          updateModalDisplay();
+        if (key.type === 'delete') {
+          btn.classList.add(key.class);
+          btn.textContent = key.text;
+          btn.addEventListener('click', () => {
+            modalOkContent = '';
+            updateModalDisplay();
+          });
+        } else if (key.type === 'backspace') {
+          btn.classList.add(key.class);
+          btn.textContent = key.text;
+          btn.addEventListener('click', () => {
+            modalOkContent = modalOkContent.slice(0, -1);
+            updateModalDisplay();
+          });
+        } else if (key.type === 'space') {
+          btn.classList.add(key.class);
+          btn.textContent = key.text;
+          btn.addEventListener('click', () => {
+            if (modalOkContent.length < 50 && !modalOkContent.endsWith(' ')) {
+              modalOkContent += ' ';
+              updateModalDisplay();
+            }
+          });
+        } else if (key.split) {
+          btn.classList.add('modal-kb-split');
+          btn.innerHTML = `
+            <span class="modal-kb-split-tl">${key.char}</span>
+            <span class="modal-kb-split-br">${key.alt}</span>
+          `;
+          btn.addEventListener('click', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const y = e.clientY - rect.top;
+            const char = y > rect.height / 2 ? key.alt : key.char;
+            if (modalOkContent.length < 50) {
+              modalOkContent += char;
+              updateModalDisplay();
+            }
+          });
         }
+
+        controlRow.appendChild(btn);
       });
 
-      controlRow.appendChild(deleteBtn);
-      controlRow.appendChild(backspaceBtn);
-      controlRow.appendChild(spaceBtn);
       modalKeyboard.appendChild(controlRow);
     }
 
