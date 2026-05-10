@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Порог: Рождение О.К. — Pygmalion</title>
-  <link rel="stylesheet" href="../styles/common.css">
+  <title>Порог — Pygmalion</title>
   <script src="../i18n/i18n.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -13,273 +12,414 @@
       background: linear-gradient(180deg, #e8e8ea 0%, #d0d0d5 100%);
       color: #1a1a1a;
       font-family: 'Georgia', serif;
-      line-height: 1.6;
-      padding: 20px;
-    }
-
-    .threshold-container {
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .threshold-wrapper {
-      background: #ffffff;
-      border: 2px solid #1a1a1a;
-      box-shadow: 6px 6px 0px rgba(0,0,0,0.15);
-      padding: 30px;
-    }
-
-    .threshold-header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .threshold-title {
-      font-size: 24px;
-      font-weight: 300;
-      color: #1a1a1a;
-      margin-bottom: 8px;
-    }
-
-    .threshold-subtitle {
-      font-size: 13px;
-      color: #6a6a6a;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .threshold-ethics {
-      background: #f5f5f5;
-      border-left: 4px solid #1a1a1a;
-      padding: 12px 16px;
-      margin-bottom: 20px;
-      font-size: 13px;
-      color: #2a2a2a;
-      line-height: 1.5;
-    }
-
-    .ok-display-container {
-      margin-bottom: 20px;
-    }
-
-    .ok-display-wrapper {
-      position: relative;
+      line-height: 1.8;
+      overflow-x: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      min-height: 100vh;
     }
 
-    .ok-display {
-      min-height: 50px;
-      padding: 12px 16px;
+    .threshold-container {
+      max-width: 600px;
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 300;
+      color: #1a1a1a;
+      margin-bottom: 40px;
+      letter-spacing: 0.5px;
+    }
+
+    .threshold-text {
+      font-size: 16px;
+      color: #2a2a2a;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .threshold-text strong {
+      color: #1a1a1a;
+      font-weight: 400;
+    }
+
+    .principles {
+      margin: 40px 0;
+      padding: 30px;
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+
+    .principle {
+      font-size: 15px;
+      color: #2a2a2a;
+      margin-bottom: 16px;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .principle:before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #6a6a6a;
+    }
+
+    .principle:last-child {
+      margin-bottom: 0;
+    }
+
+    .ok-input-section {
+      margin: 40px 0;
+    }
+
+    .ok-input-label {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #6a6a6a;
+      margin-bottom: 12px;
+    }
+
+    #ok_input {
+      width: 100%;
+      padding: 14px 20px;
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      color: #1a1a1a;
+      font-family: 'Georgia', serif;
+      font-size: 16px;
+      text-align: center;
+      outline: none;
+      transition: all 0.3s ease;
+      box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+    }
+
+    #ok_input:focus {
+      background: #f5f5f5;
+      box-shadow: 6px 6px 0px rgba(0,0,0,0.15);
+      transform: translate(-2px, -2px);
+    }
+
+    #ok_input::placeholder {
+      color: #a0a0a0;
+    }
+
+    .actions {
+      margin-top: 40px;
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 12px 32px;
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      color: #1a1a1a;
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Georgia', serif;
+      box-shadow: 4px 4px 0px rgba(0,0,0,0.15);
+    }
+
+    .btn:hover {
+      background: #f5f5f5;
+      box-shadow: 6px 6px 0px rgba(0,0,0,0.2);
+      transform: translate(-2px, -2px);
+    }
+
+    .btn-primary {
+      background: #1a1a1a;
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: #2a2a2a;
+    }
+
+    .btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .status-message {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #6a6a6a;
+      min-height: 20px;
+    }
+
+    .status-message.error {
+      color: #d32f2f;
+    }
+
+    .status-message.success {
+      color: #388e3c;
+    }
+
+    .lang-switch {
+      position: fixed;
+      top: 30px;
+      right: 40px;
+      font-size: 12px;
+      color: #6a6a6a;
+    }
+
+    .lang-switch a {
+      color: #6a6a6a;
+      text-decoration: none;
+      margin-left: 12px;
+      cursor: pointer;
+    }
+
+    .lang-switch a:hover {
+      color: #2a2a2a;
+    }
+
+    .lang-switch a.active {
+      color: #1a1a1a;
+    }
+
+    /* Модальное окно для клавиатуры */
+    .keyboard-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .keyboard-modal.active {
+      display: flex;
+    }
+
+    .keyboard-modal-content {
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      box-shadow: 8px 8px 0px rgba(0,0,0,0.2);
+      max-width: 900px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 30px;
+      position: relative;
+    }
+
+    .keyboard-modal-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .keyboard-modal-close:hover {
+      background: #f5f5f5;
+      transform: translate(2px, 2px);
+    }
+
+    .keyboard-modal-title {
+      font-size: 20px;
+      font-weight: 300;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    /* Стили клавиатуры в модальном окне */
+    .modal-ok-display {
+      min-height: 60px;
+      padding: 15px 20px;
       background: #ffffff;
       border: 2px solid #1a1a1a;
       font-family: 'Courier New', monospace;
-      font-size: 20px;
+      font-size: 24px;
       text-align: center;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
       gap: 2px;
-      flex: 1;
+      margin-bottom: 20px;
     }
 
-    .ok-display.valid {
+    .modal-ok-display.valid {
       border-color: #22c55e;
       background: #f0fdf4;
     }
 
-    .ok-display.invalid {
+    .modal-ok-display.invalid {
       border-color: #ef4444;
       background: #fef2f2;
     }
 
-    .ok-display-placeholder {
-      color: #d0d0d5;
-      font-size: 28px;
-    }
-
-    .ok-display-border {
-      color: #6a6a6a;
-      font-weight: bold;
-    }
-
-    .ok-char {
+    .modal-ok-char {
       display: inline-block;
-      padding: 2px 3px;
+      padding: 2px 4px;
       border-radius: 2px;
     }
 
-    .char-red { color: #dc2626; background: #fee2e2; }
-    .char-blue { color: #2563eb; background: #dbeafe; }
-    .char-green { color: #16a34a; background: #dcfce7; }
-
-    .btn-copy {
-      background: #ffffff;
-      border: 2px solid #1a1a1a;
-      padding: 8px;
-      cursor: pointer;
-      transition: all 0.2s ease;
+    .modal-char-red {
+      color: #dc2626;
+      background: #fee2e2;
     }
 
-    .btn-copy:hover {
-      transform: translate(2px, 2px);
-      box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+    .modal-char-blue {
+      color: #2563eb;
+      background: #dbeafe;
     }
 
-    .ok-length {
-      text-align: center;
-      font-size: 11px;
+    .modal-char-green {
+      color: #16a34a;
+      background: #dcfce7;
+    }
+
+    .modal-ok-border {
       color: #6a6a6a;
-      margin-top: 6px;
-      font-family: 'Courier New', monospace;
+      font-weight: bold;
     }
 
-    .copy-feedback {
-      position: absolute;
-      top: -25px;
-      right: 0;
-      background: #1a1a1a;
-      color: #ffffff;
-      padding: 4px 8px;
-      border-radius: 3px;
-      font-size: 11px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      pointer-events: none;
-    }
-
-    .chislobukv-keyboard {
-      margin-bottom: 20px;
-    }
-
-    .kb-legend {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 10px;
-      font-size: 11px;
-      color: #6a6a6a;
-    }
-
-    .kb-legend-item {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .kb-legend-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-
-    .kb-legend-dot.green { background: #16a34a; }
-    .kb-legend-dot.split { background: linear-gradient(135deg, #1a1a1a 50%, #6a6a6a 50%); }
-
-    .kb-row {
-      display: flex;
-      justify-content: center;
-      gap: 3px;
-      margin-bottom: 4px;
-      padding: 3px;
-      border-radius: 3px;
-      transition: all 0.2s ease;
-    }
-
-    .kb-draggable {
-      cursor: move;
-      position: relative;
-      padding-left: 25px;
-    }
-
-    .kb-draggable:hover { background: #f5f5f5; }
-    .kb-draggable.dragging { opacity: 0.5; }
-
-    .kb-drag-handle {
-      position: absolute;
-      left: 4px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 16px;
-      height: 16px;
+    .modal-ok-placeholder {
       color: #d0d0d5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      font-size: 32px;
     }
 
-    .kb-draggable:hover .kb-drag-handle { color: #6a6a6a; }
+    .modal-ok-length {
+      text-align: center;
+      font-size: 12px;
+      color: #6a6a6a;
+      margin-bottom: 20px;
+      font-family: 'Courier New', monospace;
+    }
 
-    .kb-btn {
-      min-width: 38px;
-      height: 38px;
-      padding: 6px;
+    .modal-kb-row {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+
+    .modal-kb-btn {
+      min-width: 45px;
+      height: 45px;
+      padding: 8px;
       background: #ffffff;
       border: 2px solid #1a1a1a;
       font-family: 'Courier New', monospace;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
       transition: all 0.15s ease;
-      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    .kb-btn:hover {
+    .modal-kb-btn:hover {
       transform: translate(2px, 2px);
       box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
     }
 
-    .kb-btn:active {
+    .modal-kb-btn:active {
       transform: translate(3px, 3px);
       box-shadow: none;
     }
 
-    .kb-red { color: #dc2626; background: #fee2e2; border-color: #dc2626; }
-    .kb-blue { color: #2563eb; background: #dbeafe; border-color: #2563eb; }
-    .kb-green { color: #16a34a; background: #dcfce7; border-color: #16a34a; }
-    .kb-num { color: #1a1a1a; background: #ffffff; }
+    .modal-kb-red {
+      color: #dc2626;
+      background: #fee2e2;
+      border-color: #dc2626;
+    }
 
-    .kb-split {
+    .modal-kb-blue {
+      color: #2563eb;
+      background: #dbeafe;
+      border-color: #2563eb;
+    }
+
+    .modal-kb-green {
+      color: #16a34a;
+      background: #dcfce7;
+      border-color: #16a34a;
+    }
+
+    .modal-kb-split {
       flex-direction: column;
-      align-items: stretch;
       padding: 0;
       overflow: hidden;
     }
 
-    .kb-split-tl, .kb-split-br {
+    .modal-kb-split-tl,
+    .modal-kb-split-br {
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 12px;
+      font-size: 14px;
     }
 
-    .kb-split-tl { border-bottom: 1px solid currentColor; }
+    .modal-kb-split-tl {
+      border-bottom: 1px solid currentColor;
+    }
 
-    .kb-control {
-      font-size: 12px;
+    .modal-kb-control {
+      font-size: 14px;
       font-weight: normal;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
     }
 
-    .kb-delete { background: #fee2e2; border-color: #dc2626; color: #dc2626; }
-    .kb-backspace { background: #fef3c7; border-color: #f59e0b; color: #f59e0b; }
-    .kb-space { min-width: 100px; background: #e0e7ff; border-color: #6366f1; color: #6366f1; }
-
-    .threshold-actions {
-      text-align: center;
-      margin-bottom: 15px;
+    .modal-kb-delete {
+      background: #fee2e2;
+      border-color: #dc2626;
+      color: #dc2626;
     }
 
-    .btn-primary {
+    .modal-kb-backspace {
+      background: #fef3c7;
+      border-color: #f59e0b;
+      color: #f59e0b;
+    }
+
+    .modal-kb-space {
+      min-width: 120px;
+      background: #e0e7ff;
+      border-color: #6366f1;
+      color: #6366f1;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .modal-btn {
       padding: 12px 32px;
       background: #ffffff;
       border: 2px solid #1a1a1a;
@@ -291,53 +431,45 @@
       box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
     }
 
-    .btn-primary:hover:not(:disabled) {
+    .modal-btn:hover {
+      background: #f5f5f5;
       transform: translate(2px, 2px);
       box-shadow: 6px 6px 0px rgba(0,0,0,0.15);
     }
 
-    .btn-primary:active:not(:disabled) {
-      transform: translate(4px, 4px);
-      box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+    .modal-btn-primary {
+      background: #1a1a1a;
+      color: #ffffff;
     }
 
-    .btn-primary:disabled {
+    .modal-btn-primary:hover {
+      background: #2a2a2a;
+    }
+
+    .modal-btn:disabled {
       opacity: 0.4;
       cursor: not-allowed;
     }
 
-    .threshold-info {
-      text-align: center;
-      font-size: 12px;
-      color: #6a6a6a;
-      line-height: 1.5;
-    }
-
-    .lang-switch {
-      position: fixed;
-      top: 20px;
-      right: 30px;
-      font-size: 11px;
-      color: #6a6a6a;
-      z-index: 100;
-    }
-
-    .lang-switch a {
-      color: #6a6a6a;
-      text-decoration: none;
-      margin-left: 10px;
-      cursor: pointer;
-    }
-
-    .lang-switch a:hover { color: #2a2a2a; }
-    .lang-switch a.active { color: #1a1a1a; }
-
     @media (max-width: 768px) {
-      .threshold-wrapper { padding: 20px; }
-      .ok-display { font-size: 16px; min-height: 45px; }
-      .kb-btn { min-width: 32px; height: 32px; font-size: 12px; }
-      .kb-space { min-width: 70px; }
-      .kb-draggable { padding-left: 22px; }
+      .keyboard-modal-content {
+        padding: 20px;
+      }
+
+      .modal-ok-display {
+        font-size: 18px;
+        min-height: 50px;
+      }
+
+      .modal-kb-btn {
+        min-width: 35px;
+        height: 35px;
+        font-size: 14px;
+      }
+
+      .modal-kb-space {
+        min-width: 80px;
+      }
     }
   </style>
 </head>
@@ -348,72 +480,316 @@
   </div>
 
   <div class="threshold-container">
-    <div class="threshold-wrapper">
+    <h1 data-i18n="threshold.title">Порог</h1>
 
-      <div class="threshold-header">
-        <h1 class="threshold-title">🔑 Порог: Рождение О.К.</h1>
-        <p class="threshold-subtitle">
-          Создайте свой Открытый Ключик через «ЧисСлоБукВ»
-        </p>
+    <p class="threshold-text" data-i18n="threshold.intro">
+      Вы стоите на пороге пространства, где присутствие фиксируется, а не накапливается.
+    </p>
+
+    <div class="principles">
+      <div class="principle" data-i18n="threshold.principle_1">
+        Каждый день система эмитирует 6 импульсов. Вы выбираете, куда направить своё внимание.
       </div>
-
-      <div class="threshold-ethics">
-        <p>
-          ⚠️ Вы входите в пространство нематериальной ценности.<br>
-          Ваш О.К. — это акт самоопределения, а не регистрация.
-        </p>
+      <div class="principle" data-i18n="threshold.principle_2">
+        В полночь UTC все импульсы сгорают. Это не потеря — это выдох системы.
       </div>
-
-      <div class="ok-display-container">
-        <div class="ok-display-wrapper">
-          <div class="ok-display" id="ok-display">
-            <span class="ok-display-placeholder">_</span>
-          </div>
-          <button class="btn-copy" id="btn-copy-ok" title="Копировать О.К. в буфер">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-              <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
-            </svg>
-          </button>
-        </div>
-        <div class="ok-length" id="ok-length">0 / 50</div>
-        <div class="copy-feedback" id="copy-feedback">Скопировано!</div>
+      <div class="principle" data-i18n="threshold.principle_3">
+        Остаётся только след — геометрия связей, которую вы создали.
       </div>
-
-      <div class="chislobukv-keyboard" id="keyboard">
-        <!-- Генерируется JS -->
+      <div class="principle" data-i18n="threshold.principle_4">
+        Система дышит сама. Поле живёт во времени без наблюдателя.
       </div>
-
-      <div class="threshold-actions">
-        <button id="confirm-ok-btn" class="btn-primary" disabled>
-          ✦ Подтвердить О.К.
-        </button>
-      </div>
-
-      <div class="threshold-info">
-        <p>
-          <strong>Канон ЧисСлоБукВ:</strong> 48 букв + 10 цифр + спецсимвол 𝕯<br>
-          Длина: 3-50 символов | До 5 пробелов<br>
-          О.К. сохраняется в вашем браузере.<br>
-          Это не пароль — это ваш «числовой след».
-        </p>
-      </div>
-
     </div>
+
+    <p class="threshold-text" data-i18n="threshold.question">
+      Готовы ли вы войти в это пространство и оставить свой след?
+    </p>
+
+    <div class="ok-input-section">
+      <div class="ok-input-label" data-i18n="threshold.ok_label">Ваш Открытый Ключик (О.К.)</div>
+      <input
+        type="text"
+        id="ok_input"
+        placeholder="::ok::"
+        data-i18n-placeholder="threshold.ok_placeholder"
+        maxlength="50"
+        readonly
+        style="cursor: pointer;"
+      />
+    </div>
+
+    <!-- Модальное окно с клавиатурой ЧисСлоБукВ -->
+    <div id="keyboard_modal" class="keyboard-modal">
+      <div class="keyboard-modal-content">
+        <button class="keyboard-modal-close" id="modal_close">×</button>
+        <h2 class="keyboard-modal-title">ЧисСлоБукВ — Виртуальная клавиатура</h2>
+
+        <div class="modal-ok-display" id="modal_ok_display">
+          <span class="modal-ok-border">::</span>
+          <span class="modal-ok-placeholder">...</span>
+          <span class="modal-ok-border">::</span>
+        </div>
+        <div class="modal-ok-length" id="modal_ok_length">0 / 50</div>
+
+        <div id="modal_keyboard"></div>
+
+        <div class="modal-actions">
+          <button class="modal-btn" id="modal_cancel">Отмена</button>
+          <button class="modal-btn modal-btn-primary" id="modal_confirm" disabled>Подтвердить</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <a href="../index.html" class="btn" data-i18n="threshold.back">Назад</a>
+      <button id="cross_threshold" class="btn btn-primary" disabled data-i18n="threshold.cross">Пересечь порог</button>
+    </div>
+
+    <div id="status_message" class="status-message"></div>
   </div>
 
-  <script src="threshold-canonical.js"></script>
   <script>
+    // Инициализация i18n
+    const i18n = new I18n();
+    i18n.init().then(() => {
+      // Обновить placeholder
+      const input = document.getElementById('ok_input');
+      input.placeholder = i18n.t('threshold.ok_placeholder');
+    });
+
     // Переключение языка
     document.querySelectorAll('[data-lang]').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const lang = e.target.getAttribute('data-lang');
+        i18n.setLanguage(lang);
 
+        // Обновить активный класс
         document.querySelectorAll('[data-lang]').forEach(l => l.classList.remove('active'));
         e.target.classList.add('active');
 
-        // TODO: Интеграция с i18n
+        // Обновить placeholder
+        const input = document.getElementById('ok_input');
+        input.placeholder = i18n.t('threshold.ok_placeholder');
       });
+    });
+
+    // === МОДАЛЬНОЕ ОКНО С КЛАВИАТУРОЙ ===
+    const okInput = document.getElementById('ok_input');
+    const keyboardModal = document.getElementById('keyboard_modal');
+    const modalClose = document.getElementById('modal_close');
+    const modalCancel = document.getElementById('modal_cancel');
+    const modalConfirm = document.getElementById('modal_confirm');
+    const modalOkDisplay = document.getElementById('modal_ok_display');
+    const modalOkLength = document.getElementById('modal_ok_length');
+    const modalKeyboard = document.getElementById('modal_keyboard');
+
+    // Состояние клавиатуры
+    let modalOkContent = '';
+
+    // Открыть модальное окно при клике на input
+    okInput.addEventListener('click', () => {
+      keyboardModal.classList.add('active');
+      modalOkContent = okInput.value.replace(/^::|::$/g, '');
+      updateModalDisplay();
+    });
+
+    // Закрыть модальное окно
+    const closeModal = () => {
+      keyboardModal.classList.remove('active');
+    };
+
+    modalClose.addEventListener('click', closeModal);
+    modalCancel.addEventListener('click', closeModal);
+
+    // Закрыть при клике вне контента
+    keyboardModal.addEventListener('click', (e) => {
+      if (e.target === keyboardModal) {
+        closeModal();
+      }
+    });
+
+    // Подтвердить О.К.
+    modalConfirm.addEventListener('click', () => {
+      const fullOk = `::${modalOkContent}::`;
+      okInput.value = fullOk;
+      closeModal();
+      validateOk();
+    });
+
+    // Обновить отображение О.К. в модальном окне
+    function updateModalDisplay() {
+      const colorMap = {
+        'А': 'red', 'Б': 'red', 'В': 'red', 'Г': 'red', 'Д': 'red', 'Е': 'red',
+        'Ж': 'red', 'З': 'red', 'И': 'red', 'Й': 'red', 'К': 'red', 'Л': 'red',
+        'М': 'red', 'Н': 'red', 'О': 'red', 'П': 'red', 'Р': 'red', 'С': 'red',
+        'Т': 'red', 'У': 'red', 'Ф': 'red', 'Х': 'red', 'Ц': 'red', 'Ч': 'red',
+        'Ш': 'red', 'Щ': 'red', 'Ъ': 'red', 'Ы': 'red', 'Ь': 'red', 'Э': 'red',
+        'Ю': 'red', 'Я': 'red',
+        'A': 'blue', 'B': 'blue', 'C': 'blue', 'D': 'blue', 'E': 'blue', 'F': 'blue',
+        'G': 'blue', 'H': 'blue', 'I': 'blue', 'J': 'blue', 'K': 'blue', 'L': 'blue',
+        'M': 'blue', 'N': 'blue', 'O': 'blue', 'P': 'blue', 'Q': 'blue', 'R': 'blue',
+        'S': 'blue', 'T': 'blue', 'U': 'blue', 'V': 'blue', 'W': 'blue', 'X': 'blue',
+        'Y': 'blue', 'Z': 'blue',
+        '𝕯': 'green'
+      };
+
+      if (modalOkContent.length === 0) {
+        modalOkDisplay.innerHTML = '<span class="modal-ok-border">::</span><span class="modal-ok-placeholder">...</span><span class="modal-ok-border">::</span>';
+      } else {
+        const chars = modalOkContent.split('').map(char => {
+          const color = colorMap[char] || '';
+          const className = color ? `modal-ok-char modal-char-${color}` : 'modal-ok-char';
+          return `<span class="${className}">${char}</span>`;
+        }).join('');
+        modalOkDisplay.innerHTML = `<span class="modal-ok-border">::</span>${chars}<span class="modal-ok-border">::</span>`;
+      }
+
+      // Валидация
+      const isValid = modalOkContent.length >= 3 && modalOkContent.length <= 50;
+      modalOkDisplay.className = isValid ? 'modal-ok-display valid' : 'modal-ok-display invalid';
+      modalOkLength.textContent = `${modalOkContent.length} / 50`;
+      modalConfirm.disabled = !isValid;
+    }
+
+    // Создать клавиатуру
+    function createKeyboard() {
+      const rows = [
+        { chars: ['А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'Й'], color: 'red' },
+        { chars: ['К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У'], color: 'red' },
+        { chars: ['Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э'], color: 'red' },
+        { chars: ['Ю', 'Я', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'], color: 'mixed' },
+        { chars: ['I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R'], color: 'blue' },
+        { chars: ['S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '𝕯'], color: 'blue' },
+        { chars: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'], color: 'num' }
+      ];
+
+      rows.forEach(row => {
+        const rowDiv = document.createElement('div');
+        rowDiv.className = 'modal-kb-row';
+
+        row.chars.forEach(char => {
+          const btn = document.createElement('button');
+          btn.className = 'modal-kb-btn';
+
+          if (row.color === 'red') btn.classList.add('modal-kb-red');
+          else if (row.color === 'blue') btn.classList.add('modal-kb-blue');
+          else if (char === '𝕯') btn.classList.add('modal-kb-green');
+          else if (row.color === 'mixed') {
+            if (['Ю', 'Я'].includes(char)) btn.classList.add('modal-kb-red');
+            else btn.classList.add('modal-kb-blue');
+          }
+
+          btn.textContent = char;
+          btn.addEventListener('click', () => {
+            if (modalOkContent.length < 50) {
+              modalOkContent += char;
+              updateModalDisplay();
+            }
+          });
+
+          rowDiv.appendChild(btn);
+        });
+
+        modalKeyboard.appendChild(rowDiv);
+      });
+
+      // Управляющие кнопки
+      const controlRow = document.createElement('div');
+      controlRow.className = 'modal-kb-row';
+
+      const deleteBtn = document.createElement('button');
+      deleteBtn.className = 'modal-kb-btn modal-kb-control modal-kb-delete';
+      deleteBtn.textContent = 'DEL';
+      deleteBtn.addEventListener('click', () => {
+        modalOkContent = '';
+        updateModalDisplay();
+      });
+
+      const backspaceBtn = document.createElement('button');
+      backspaceBtn.className = 'modal-kb-btn modal-kb-control modal-kb-backspace';
+      backspaceBtn.textContent = '←';
+      backspaceBtn.addEventListener('click', () => {
+        modalOkContent = modalOkContent.slice(0, -1);
+        updateModalDisplay();
+      });
+
+      const spaceBtn = document.createElement('button');
+      spaceBtn.className = 'modal-kb-btn modal-kb-control modal-kb-space';
+      spaceBtn.textContent = 'SPACE';
+      spaceBtn.addEventListener('click', () => {
+        if (modalOkContent.length < 50) {
+          modalOkContent += ' ';
+          updateModalDisplay();
+        }
+      });
+
+      controlRow.appendChild(deleteBtn);
+      controlRow.appendChild(backspaceBtn);
+      controlRow.appendChild(spaceBtn);
+      modalKeyboard.appendChild(controlRow);
+    }
+
+    createKeyboard();
+
+    // === ВАЛИДАЦИЯ И ОТПРАВКА ===
+    const crossBtn = document.getElementById('cross_threshold');
+    const statusMsg = document.getElementById('status_message');
+
+    function validateOk() {
+      const value = okInput.value.trim();
+      const isValid = /^::.+::$/.test(value) && value.length >= 7 && value.length <= 54;
+      crossBtn.disabled = !isValid;
+
+      if (value && !isValid) {
+        statusMsg.textContent = i18n.t('threshold.error_format');
+        statusMsg.className = 'status-message error';
+      } else {
+        statusMsg.textContent = '';
+        statusMsg.className = 'status-message';
+      }
+    }
+
+    // Пересечение порога
+    crossBtn.addEventListener('click', async () => {
+      const okKey = okInput.value.trim();
+
+      if (!okKey) return;
+
+      crossBtn.disabled = true;
+      statusMsg.textContent = i18n.t('threshold.crossing');
+      statusMsg.className = 'status-message';
+
+      try {
+        // Отправить акт THRESHOLD_CROSSED
+        const API_BASE = window.PYGMALION_API_BASE || 'http://localhost:3000';
+        const response = await fetch(`${API_BASE}/api/threshold`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ok_key: okKey })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          statusMsg.textContent = i18n.t('threshold.success');
+          statusMsg.className = 'status-message success';
+
+          // Перенаправить на поле через 1.5 секунды
+          setTimeout(() => {
+            window.location.href = `field.html?ok=${encodeURIComponent(okKey)}`;
+          }, 1500);
+        } else {
+          statusMsg.textContent = data.error || i18n.t('threshold.error_unknown');
+          statusMsg.className = 'status-message error';
+          crossBtn.disabled = false;
+        }
+      } catch (error) {
+        console.error('Threshold error:', error);
+        statusMsg.textContent = i18n.t('threshold.error_network');
+        statusMsg.className = 'status-message error';
+        crossBtn.disabled = false;
+      }
     });
   </script>
 </body>
