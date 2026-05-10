@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Порог — Pygmalion</title>
+  <title>Порог: Рождение О.К. — Pygmalion</title>
+  <link rel="stylesheet" href="../styles/common.css">
   <script src="../i18n/i18n.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -12,182 +13,331 @@
       background: linear-gradient(180deg, #e8e8ea 0%, #d0d0d5 100%);
       color: #1a1a1a;
       font-family: 'Georgia', serif;
-      line-height: 1.8;
-      overflow-x: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
+      line-height: 1.6;
+      padding: 20px;
     }
 
     .threshold-container {
-      max-width: 600px;
-      padding: 60px 40px;
-      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
     }
 
-    h1 {
+    .threshold-wrapper {
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      box-shadow: 6px 6px 0px rgba(0,0,0,0.15);
+      padding: 30px;
+    }
+
+    .threshold-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .threshold-title {
       font-size: 24px;
       font-weight: 300;
       color: #1a1a1a;
-      margin-bottom: 40px;
-      letter-spacing: 0.5px;
+      margin-bottom: 8px;
     }
 
-    .threshold-text {
-      font-size: 16px;
-      color: #2a2a2a;
-      margin-bottom: 20px;
-      text-align: left;
-    }
-
-    .threshold-text strong {
-      color: #1a1a1a;
-      font-weight: 400;
-    }
-
-    .principles {
-      margin: 40px 0;
-      padding: 30px;
-      background: #ffffff;
-      border: 2px solid #1a1a1a;
-      box-shadow: 6px 6px 0px rgba(0,0,0,0.1);
-      text-align: left;
-    }
-
-    .principle {
-      font-size: 15px;
-      color: #2a2a2a;
-      margin-bottom: 16px;
-      padding-left: 20px;
-      position: relative;
-    }
-
-    .principle:before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: #6a6a6a;
-    }
-
-    .principle:last-child {
-      margin-bottom: 0;
-    }
-
-    .ok-input-section {
-      margin: 40px 0;
-    }
-
-    .ok-input-label {
+    .threshold-subtitle {
       font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
       color: #6a6a6a;
-      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    #ok_input {
-      width: 100%;
-      padding: 14px 20px;
+    .threshold-ethics {
+      background: #f5f5f5;
+      border-left: 4px solid #1a1a1a;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      font-size: 13px;
+      color: #2a2a2a;
+      line-height: 1.5;
+    }
+
+    .ok-display-container {
+      margin-bottom: 20px;
+    }
+
+    .ok-display-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .ok-display {
+      min-height: 50px;
+      padding: 12px 16px;
       background: #ffffff;
       border: 2px solid #1a1a1a;
-      color: #1a1a1a;
-      font-family: 'Georgia', serif;
-      font-size: 16px;
+      font-family: 'Courier New', monospace;
+      font-size: 20px;
       text-align: center;
-      outline: none;
-      transition: all 0.3s ease;
-      box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
-    }
-
-    #ok_input:focus {
-      background: #f5f5f5;
-      box-shadow: 6px 6px 0px rgba(0,0,0,0.15);
-      transform: translate(-2px, -2px);
-    }
-
-    #ok_input::placeholder {
-      color: #a0a0a0;
-    }
-
-    .actions {
-      margin-top: 40px;
       display: flex;
-      gap: 20px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2px;
+      flex: 1;
+    }
+
+    .ok-display.valid {
+      border-color: #22c55e;
+      background: #f0fdf4;
+    }
+
+    .ok-display.invalid {
+      border-color: #ef4444;
+      background: #fef2f2;
+    }
+
+    .ok-display-placeholder {
+      color: #d0d0d5;
+      font-size: 28px;
+    }
+
+    .ok-display-border {
+      color: #6a6a6a;
+      font-weight: bold;
+    }
+
+    .ok-char {
+      display: inline-block;
+      padding: 2px 3px;
+      border-radius: 2px;
+    }
+
+    .char-red { color: #dc2626; background: #fee2e2; }
+    .char-blue { color: #2563eb; background: #dbeafe; }
+    .char-green { color: #16a34a; background: #dcfce7; }
+
+    .btn-copy {
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      padding: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-copy:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+    }
+
+    .ok-length {
+      text-align: center;
+      font-size: 11px;
+      color: #6a6a6a;
+      margin-top: 6px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .copy-feedback {
+      position: absolute;
+      top: -25px;
+      right: 0;
+      background: #1a1a1a;
+      color: #ffffff;
+      padding: 4px 8px;
+      border-radius: 3px;
+      font-size: 11px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .chislobukv-keyboard {
+      margin-bottom: 20px;
+    }
+
+    .kb-legend {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 10px;
+      font-size: 11px;
+      color: #6a6a6a;
+    }
+
+    .kb-legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .kb-legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .kb-legend-dot.green { background: #16a34a; }
+    .kb-legend-dot.split { background: linear-gradient(135deg, #1a1a1a 50%, #6a6a6a 50%); }
+
+    .kb-row {
+      display: flex;
+      justify-content: center;
+      gap: 3px;
+      margin-bottom: 4px;
+      padding: 3px;
+      border-radius: 3px;
+      transition: all 0.2s ease;
+    }
+
+    .kb-draggable {
+      cursor: move;
+      position: relative;
+      padding-left: 25px;
+    }
+
+    .kb-draggable:hover { background: #f5f5f5; }
+    .kb-draggable.dragging { opacity: 0.5; }
+
+    .kb-drag-handle {
+      position: absolute;
+      left: 4px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      color: #d0d0d5;
+      display: flex;
+      align-items: center;
       justify-content: center;
     }
 
-    .btn {
+    .kb-draggable:hover .kb-drag-handle { color: #6a6a6a; }
+
+    .kb-btn {
+      min-width: 38px;
+      height: 38px;
+      padding: 6px;
+      background: #ffffff;
+      border: 2px solid #1a1a1a;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .kb-btn:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+    }
+
+    .kb-btn:active {
+      transform: translate(3px, 3px);
+      box-shadow: none;
+    }
+
+    .kb-red { color: #dc2626; background: #fee2e2; border-color: #dc2626; }
+    .kb-blue { color: #2563eb; background: #dbeafe; border-color: #2563eb; }
+    .kb-green { color: #16a34a; background: #dcfce7; border-color: #16a34a; }
+    .kb-num { color: #1a1a1a; background: #ffffff; }
+
+    .kb-split {
+      flex-direction: column;
+      align-items: stretch;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .kb-split-tl, .kb-split-br {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .kb-split-tl { border-bottom: 1px solid currentColor; }
+
+    .kb-control {
+      font-size: 12px;
+      font-weight: normal;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .kb-delete { background: #fee2e2; border-color: #dc2626; color: #dc2626; }
+    .kb-backspace { background: #fef3c7; border-color: #f59e0b; color: #f59e0b; }
+    .kb-space { min-width: 100px; background: #e0e7ff; border-color: #6366f1; color: #6366f1; }
+
+    .threshold-actions {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .btn-primary {
       padding: 12px 32px;
       background: #ffffff;
       border: 2px solid #1a1a1a;
       color: #1a1a1a;
-      text-decoration: none;
+      font-family: 'Georgia', serif;
       font-size: 14px;
-      letter-spacing: 1px;
       cursor: pointer;
       transition: all 0.3s ease;
-      font-family: 'Georgia', serif;
-      box-shadow: 4px 4px 0px rgba(0,0,0,0.15);
+      box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
     }
 
-    .btn:hover {
-      background: #f5f5f5;
-      box-shadow: 6px 6px 0px rgba(0,0,0,0.2);
-      transform: translate(-2px, -2px);
+    .btn-primary:hover:not(:disabled) {
+      transform: translate(2px, 2px);
+      box-shadow: 6px 6px 0px rgba(0,0,0,0.15);
     }
 
-    .btn-primary {
-      background: #1a1a1a;
-      color: #ffffff;
+    .btn-primary:active:not(:disabled) {
+      transform: translate(4px, 4px);
+      box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
     }
 
-    .btn-primary:hover {
-      background: #2a2a2a;
-    }
-
-    .btn:disabled {
-      opacity: 0.3;
+    .btn-primary:disabled {
+      opacity: 0.4;
       cursor: not-allowed;
-      transform: none;
     }
 
-    .status-message {
-      margin-top: 20px;
-      font-size: 14px;
+    .threshold-info {
+      text-align: center;
+      font-size: 12px;
       color: #6a6a6a;
-      min-height: 20px;
-    }
-
-    .status-message.error {
-      color: #d32f2f;
-    }
-
-    .status-message.success {
-      color: #388e3c;
+      line-height: 1.5;
     }
 
     .lang-switch {
       position: fixed;
-      top: 30px;
-      right: 40px;
-      font-size: 12px;
+      top: 20px;
+      right: 30px;
+      font-size: 11px;
       color: #6a6a6a;
+      z-index: 100;
     }
 
     .lang-switch a {
       color: #6a6a6a;
       text-decoration: none;
-      margin-left: 12px;
+      margin-left: 10px;
       cursor: pointer;
     }
 
-    .lang-switch a:hover {
-      color: #2a2a2a;
-    }
+    .lang-switch a:hover { color: #2a2a2a; }
+    .lang-switch a.active { color: #1a1a1a; }
 
-    .lang-switch a.active {
-      color: #1a1a1a;
+    @media (max-width: 768px) {
+      .threshold-wrapper { padding: 20px; }
+      .ok-display { font-size: 16px; min-height: 45px; }
+      .kb-btn { min-width: 32px; height: 32px; font-size: 12px; }
+      .kb-space { min-width: 70px; }
+      .kb-draggable { padding-left: 22px; }
     }
   </style>
 </head>
@@ -198,142 +348,72 @@
   </div>
 
   <div class="threshold-container">
-    <h1 data-i18n="threshold.title">Порог</h1>
+    <div class="threshold-wrapper">
 
-    <p class="threshold-text" data-i18n="threshold.intro">
-      Вы стоите на пороге пространства, где присутствие фиксируется, а не накапливается.
-    </p>
+      <div class="threshold-header">
+        <h1 class="threshold-title">🔑 Порог: Рождение О.К.</h1>
+        <p class="threshold-subtitle">
+          Создайте свой Открытый Ключик через «ЧисСлоБукВ»
+        </p>
+      </div>
 
-    <div class="principles">
-      <div class="principle" data-i18n="threshold.principle_1">
-        Каждый день система эмитирует 6 импульсов. Вы выбираете, куда направить своё внимание.
+      <div class="threshold-ethics">
+        <p>
+          ⚠️ Вы входите в пространство нематериальной ценности.<br>
+          Ваш О.К. — это акт самоопределения, а не регистрация.
+        </p>
       </div>
-      <div class="principle" data-i18n="threshold.principle_2">
-        В полночь UTC все импульсы сгорают. Это не потеря — это выдох системы.
+
+      <div class="ok-display-container">
+        <div class="ok-display-wrapper">
+          <div class="ok-display" id="ok-display">
+            <span class="ok-display-placeholder">_</span>
+          </div>
+          <button class="btn-copy" id="btn-copy-ok" title="Копировать О.К. в буфер">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="ok-length" id="ok-length">0 / 50</div>
+        <div class="copy-feedback" id="copy-feedback">Скопировано!</div>
       </div>
-      <div class="principle" data-i18n="threshold.principle_3">
-        Остаётся только след — геометрия связей, которую вы создали.
+
+      <div class="chislobukv-keyboard" id="keyboard">
+        <!-- Генерируется JS -->
       </div>
-      <div class="principle" data-i18n="threshold.principle_4">
-        Система дышит сама. Поле живёт во времени без наблюдателя.
+
+      <div class="threshold-actions">
+        <button id="confirm-ok-btn" class="btn-primary" disabled>
+          ✦ Подтвердить О.К.
+        </button>
       </div>
+
+      <div class="threshold-info">
+        <p>
+          <strong>Канон ЧисСлоБукВ:</strong> 48 букв + 10 цифр + спецсимвол 𝕯<br>
+          Длина: 3-50 символов | До 5 пробелов<br>
+          О.К. сохраняется в вашем браузере.<br>
+          Это не пароль — это ваш «числовой след».
+        </p>
+      </div>
+
     </div>
-
-    <p class="threshold-text" data-i18n="threshold.question">
-      Готовы ли вы войти в это пространство и оставить свой след?
-    </p>
-
-    <div class="ok-input-section">
-      <div class="ok-input-label" data-i18n="threshold.ok_label">Ваш Открытый Ключик (О.К.)</div>
-      <input
-        type="text"
-        id="ok_input"
-        placeholder="::ok::"
-        data-i18n-placeholder="threshold.ok_placeholder"
-        maxlength="50"
-      />
-    </div>
-
-    <div class="actions">
-      <a href="../index.html" class="btn" data-i18n="threshold.back">Назад</a>
-      <button id="cross_threshold" class="btn btn-primary" disabled data-i18n="threshold.cross">Пересечь порог</button>
-    </div>
-
-    <div id="status_message" class="status-message"></div>
   </div>
 
+  <script src="threshold-canonical.js"></script>
   <script>
-    // Инициализация i18n
-    const i18n = new I18n();
-    i18n.init().then(() => {
-      // Обновить placeholder
-      const input = document.getElementById('ok_input');
-      input.placeholder = i18n.t('threshold.ok_placeholder');
-    });
-
     // Переключение языка
     document.querySelectorAll('[data-lang]').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const lang = e.target.getAttribute('data-lang');
-        i18n.setLanguage(lang);
 
-        // Обновить активный класс
         document.querySelectorAll('[data-lang]').forEach(l => l.classList.remove('active'));
         e.target.classList.add('active');
 
-        // Обновить placeholder
-        const input = document.getElementById('ok_input');
-        input.placeholder = i18n.t('threshold.ok_placeholder');
+        // TODO: Интеграция с i18n
       });
-    });
-
-    // Валидация О.К.
-    const okInput = document.getElementById('ok_input');
-    const crossBtn = document.getElementById('cross_threshold');
-    const statusMsg = document.getElementById('status_message');
-
-    okInput.addEventListener('input', () => {
-      const value = okInput.value.trim();
-      const isValid = /^::[0-9A-Za-z._-]+::$/.test(value);
-      crossBtn.disabled = !isValid;
-
-      if (value && !isValid) {
-        statusMsg.textContent = i18n.t('threshold.error_format');
-        statusMsg.className = 'status-message error';
-      } else {
-        statusMsg.textContent = '';
-        statusMsg.className = 'status-message';
-      }
-    });
-
-    // Пересечение порога
-    crossBtn.addEventListener('click', async () => {
-      const okKey = okInput.value.trim();
-
-      if (!okKey) return;
-
-      crossBtn.disabled = true;
-      statusMsg.textContent = i18n.t('threshold.crossing');
-      statusMsg.className = 'status-message';
-
-      try {
-        // Отправить акт THRESHOLD_CROSSED
-        const API_BASE = window.PYGMALION_API_BASE || 'http://localhost:3000';
-        const response = await fetch(`${API_BASE}/api/threshold`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ok_key: okKey })
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-          statusMsg.textContent = i18n.t('threshold.success');
-          statusMsg.className = 'status-message success';
-
-          // Перенаправить на поле через 1.5 секунды
-          setTimeout(() => {
-            window.location.href = `field.html?ok=${encodeURIComponent(okKey)}`;
-          }, 1500);
-        } else {
-          statusMsg.textContent = data.error || i18n.t('threshold.error_unknown');
-          statusMsg.className = 'status-message error';
-          crossBtn.disabled = false;
-        }
-      } catch (error) {
-        console.error('Threshold error:', error);
-        statusMsg.textContent = i18n.t('threshold.error_network');
-        statusMsg.className = 'status-message error';
-        crossBtn.disabled = false;
-      }
-    });
-
-    // Enter для отправки
-    okInput.addEventListener('keypress', (e) => {
-      if (e.key === 'Enter' && !crossBtn.disabled) {
-        crossBtn.click();
-      }
     });
   </script>
 </body>
