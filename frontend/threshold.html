@@ -246,8 +246,15 @@
       font-size: 20px;
       font-weight: 300;
       color: #1a1a1a;
-      margin-bottom: 20px;
+      margin-bottom: 8px;
       text-align: center;
+    }
+
+    .keyboard-modal-subtitle {
+      font-size: 13px;
+      color: #6a6a6a;
+      text-align: center;
+      margin-bottom: 20px;
     }
 
     /* Стили клавиатуры в модальном окне */
@@ -522,7 +529,8 @@
     <div id="keyboard_modal" class="keyboard-modal">
       <div class="keyboard-modal-content">
         <button class="keyboard-modal-close" id="modal_close">×</button>
-        <h2 class="keyboard-modal-title">ЧисСлоБукВ — Виртуальная клавиатура</h2>
+        <h2 class="keyboard-modal-title">🔑 Порог: Рождение О.К.</h2>
+        <p class="keyboard-modal-subtitle">Создайте свой Открытый Ключик через «ЧисСлоБукВ»</p>
 
         <div class="modal-ok-display" id="modal_ok_display">
           <span class="modal-ok-border">::</span>
@@ -652,7 +660,11 @@
       modalConfirm.disabled = !isValid;
 
       // Обновить текст кнопки
-      modalConfirm.textContent = modalOkContent.length > 0 ? 'ПРИНЯТЬ О.КЛЮЧИК' : 'ОЖИДАНИЕ ВВОДА';
+      if (modalOkContent.length > 0) {
+        modalConfirm.textContent = 'ПРИНЯТЬ О.КЛЮЧИК';
+      } else {
+        modalConfirm.textContent = 'ОЖИДАНИЕ ВВОДА';
+      }
     }
 
     // Создать клавиатуру
