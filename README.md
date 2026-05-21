@@ -101,4 +101,9 @@ Presence is the trace you leave in the topology of recognition.
 
 PYGMALION / C.R.I.S.T.A.L.L. — numerical NOD platform  
 Technology TUTumUE / TIUP(h)  
-© 2017–2026
+© 2017–2026  
+
+## System Map
+
+See `AI-SYSTEM-MAP.md` for the full system architecture and Canon Layer reference.  
+Canon SSOT: `backend/core/canon/` (version: `phase1-stable-2026.05`)
